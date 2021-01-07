@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int robust, worst;
-
+int worst;
 
 void BVC(int numOfParameter, int *maxi, int *mini, int *nominal) 
 {
@@ -94,6 +93,98 @@ void BVC(int numOfParameter, int *maxi, int *mini, int *nominal)
 }
 
 
+void Robust(int numOfParameter, int *maxi, int *mini, int *nominal) 
+{
+	int robust = 6 * numOfParameter +1;
+	int maxMinArray[numOfParameter][6], robustOut[robust][numOfParameter+1];
+	
+	for(int i=0 ; i<numOfParameter ; i++)
+	{
+		nominal[i] = (int) ((maxi[i] + mini[i])/2);
+		
+		maxMinArray[i][0]= mini[i] -1; // min minus value
+		maxMinArray[i][1]= mini[i]; // min value
+		maxMinArray[i][2]= mini[i] + 1; // min plus value
+		maxMinArray[i][3]= maxi[i] -1 ; // max minus value
+		maxMinArray[i][4]= maxi[i] ; // max value
+		maxMinArray[i][5]= maxi[i] +1; // max plus value
+	}
+	
+	for(int i=0; i<robust; i++)
+	{
+		robustOut[i][0] = i+1;
+	}
+
+	int row_robust = 0;
+	
+	for(int i=0; i<numOfParameter; i++)
+	{
+		
+		for(int j=0; j<6; j++)
+		{
+			for(int k= 0 ; k<numOfParameter ; k++)
+			{
+				if(k==i)
+				{
+					robustOut[row_robust][k+1]= maxMinArray[k][j];
+					//cout << robustOut[row_robust][k+1] << "\t";
+				}
+				
+				else
+				{
+					robustOut[row_robust][k+1]= nominal[k];
+					//cout << robustOut[row_robust][k+1] << "\t";
+				}
+			}	
+			//cout << endl;
+			row_robust = row_robust + 1;
+		}
+		
+	}
+	
+	for(int i=0; i<numOfParameter; i++)
+	{
+		robustOut[row_robust][i+1]= nominal[i];
+		//cout << robustOut[row_robust][i+1] << "\t";
+	}
+	
+	//cout << endl;
+
+	ofstream oFile;
+	oFile.open("Robust.csv", ofstream::app);
+	if(oFile.is_open())
+	{
+		oFile << "Test Case ID,";
+		
+		for(int i=0; i<numOfParameter; i++)
+		{
+			oFile << "Parameter" << i+1 << ",";
+		}
+		oFile << "Expected Output" << endl;
+		
+		for(int i=0; i<robust; i++)
+		{
+			for(int j=0; j<numOfParameter+1; j++)
+			{
+				oFile << robustOut[i][j] << ",";
+			}
+			oFile << " "<< endl;
+		}
+		
+		oFile.close();
+	}
+	else
+	{
+		cout << "Couldn't open output file" << endl;
+	}
+	
+	
+	
+	return;
+}
+
+
+
 int main (void)
 {
 
@@ -101,12 +192,11 @@ int main (void)
 	
 	cout << "Enter number of parameters: ";
 	cin >> numOfParameter;
-	
-	robust =  6 * numOfParameter +1;
+
 	worst = pow(5,numOfParameter);
 	
 	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter],
-		 robustOut[robust][numOfParameter+1], worstOut[worst][numOfParameter+1] ;
+		  worstOut[worst][numOfParameter+1] ;
 	
 	
 	for(int i=0; i<numOfParameter; i++)
@@ -116,6 +206,8 @@ int main (void)
 	}
 	
 	BVC(numOfParameter, maxi, mini, nominal);
+	Robust(numOfParameter, maxi, mini, nominal);
+	
 	
 	
 	return 0;
