@@ -2,11 +2,15 @@
 
 using namespace std;
 
-int bvc, robust, worst;
+int robust, worst;
 
-/*
-void BVC () 
+
+void BVC(int numOfParameter, int *maxi, int *mini, int *nominal) 
 {
+	cout << "ashci" << endl;
+	int bvc = 4 * numOfParameter +1;
+	int maxMinArray[numOfParameter][4], bvcOut[bvc][numOfParameter+1];
+/*
 	ofstream oFile;
 	oFile.open("BVC.csv", ofstream::app);
 	if(oFile.is_open())
@@ -21,54 +25,16 @@ void BVC ()
 	{
 		cout << "file khule nai" << endl;
 	}
-	return;
-}
-*/
-
-/*
-void processData( int i)
-{
-	cout << "Min value of parameter " << i+1 << ": ";
-	cin >> mini;
-	cout << "Max value of parameter " << i+1 << ": ";
-	cin >> maxi;
-	maxPlus = maxi + 1;
-	maxMinus = maxi -1;
-	minPlus = mini + 1;
-	minMinus = mini -1;
-	nominal = (int) ((maxi+mini)/2);
-}
-*/
-
-int main (void)
-{
-
-	int numOfParameter;
+	*/
 	
-	cout << "Enter number of parameters: ";
-	cin >> numOfParameter;
-	
-	bvc = 4 * numOfParameter +1;
-	robust =  6 * numOfParameter +1;
-	worst = pow(5,numOfParameter);
-	
-	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter], maxMinArray[numOfParameter][4],
-		bvcOut[bvc][numOfParameter+1], robustOut[robust][numOfParameter+1], worstOut[worst][numOfParameter+1] ;
-	
-	//cout << bvc << "\t" << robust << "\t" << worst << endl;
-	
-	for(int i=0; i<numOfParameter; i++)
+	for(int i=0 ; i<numOfParameter ; i++)
 	{
-		cout << "Min & Max value of parameter " << i+1 << ": ";
-		cin >> mini[i] >> maxi[i];
-		
 		nominal[i] = (int) ((maxi[i] + mini[i])/2);
 		
 		maxMinArray[i][0]= mini[i]; // min value
 		maxMinArray[i][1]= mini[i] + 1; // mini value
 		maxMinArray[i][2]= maxi[i] - 1 ; // max-1 value
 		maxMinArray[i][3]= maxi[i]; // max value
-		
 	}
 	
 	for(int i=0; i<bvc; i++)
@@ -87,29 +53,59 @@ int main (void)
 			{
 				if(k==i)
 				{
-					cout << maxMinArray[k][j] << "\t";
+					bvcOut[row_bvc][k+1]= maxMinArray[k][j];
+					cout << bvcOut[row_bvc][k+1] << "\t";
 				}
 				
 				else
 				{
-					cout << nominal[k] << "\t";
+					bvcOut[row_bvc][k+1]= nominal[k];
+					cout << bvcOut[row_bvc][k+1] << "\t";
 				}
 			}	
-		
 			cout << endl;
+			row_bvc = row_bvc + 1;
 		}
 		
 	}
 	
 	for(int i=0; i<numOfParameter; i++)
 	{
-		cout << nominal[i] << "\t";
+		bvcOut[row_bvc][i+1]= nominal[i];
+		cout << bvcOut[row_bvc][i+1] << "\t";
 	}
 	
 	cout << endl;
 	
 	
-	
+	return;
+}
 
+
+int main (void)
+{
+
+	int numOfParameter;
+	
+	cout << "Enter number of parameters: ";
+	cin >> numOfParameter;
+	
+	robust =  6 * numOfParameter +1;
+	worst = pow(5,numOfParameter);
+	
+	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter],
+		 robustOut[robust][numOfParameter+1], worstOut[worst][numOfParameter+1] ;
+	
+	
+	for(int i=0; i<numOfParameter; i++)
+	{
+		cout << "Min & Max value of parameter " << i+1 << ": ";
+		cin >> mini[i] >> maxi[i];	
+	}
+	
+	BVC(numOfParameter, maxi, mini, nominal);
+		cout << "back ashci" << endl;
+	
+	
 	return 0;
 }
