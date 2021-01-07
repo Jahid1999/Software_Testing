@@ -52,16 +52,15 @@ int main (void)
 	robust =  6 * numOfParameter +1;
 	worst = pow(5,numOfParameter);
 	
-	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter], maxMinArray[numOfParameter][4];
+	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter], maxMinArray[numOfParameter][4],
+		bvcOut[bvc][numOfParameter+1], robustOut[robust][numOfParameter+1], worstOut[worst][numOfParameter+1] ;
 	
 	//cout << bvc << "\t" << robust << "\t" << worst << endl;
 	
 	for(int i=0; i<numOfParameter; i++)
 	{
-		cout << "Min value of parameter " << i+1 << ": ";
-		cin >> mini[i];
-		cout << "Max value of parameter " << i+1 << ": ";
-		cin >> maxi[i];	
+		cout << "Min & Max value of parameter " << i+1 << ": ";
+		cin >> mini[i] >> maxi[i];
 		
 		nominal[i] = (int) ((maxi[i] + mini[i])/2);
 		
@@ -71,8 +70,14 @@ int main (void)
 		maxMinArray[i][3]= maxi[i]; // max value
 		
 	}
+	
+	for(int i=0; i<bvc; i++)
+	{
+		bvcOut[i][0] = i+1;
+	}
 
-
+	int row_bvc = 1;
+	
 	for(int i=0; i<numOfParameter; i++)
 	{
 		
@@ -80,18 +85,30 @@ int main (void)
 		{
 			for(int k= 0 ; k<numOfParameter ; k++)
 			{
-				if(k!=numOfParameter-(i+1))
+				if(k==i)
+				{
+					cout << maxMinArray[k][j] << "\t";
+				}
+				
+				else
 				{
 					cout << nominal[k] << "\t";
 				}
-			}
-			
-			cout << maxMinArray[numOfParameter-(i+1)][j] << "\t";	
+			}	
 		
 			cout << endl;
 		}
 		
 	}
+	
+	for(int i=0; i<numOfParameter; i++)
+	{
+		cout << nominal[i] << "\t";
+	}
+	
+	cout << endl;
+	
+	
 	
 
 	return 0;
