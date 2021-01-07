@@ -7,25 +7,8 @@ int robust, worst;
 
 void BVC(int numOfParameter, int *maxi, int *mini, int *nominal) 
 {
-	cout << "ashci" << endl;
 	int bvc = 4 * numOfParameter +1;
 	int maxMinArray[numOfParameter][4], bvcOut[bvc][numOfParameter+1];
-/*
-	ofstream oFile;
-	oFile.open("BVC.csv", ofstream::app);
-	if(oFile.is_open())
-	{
-		oFile << "Tini atkiye uthlin" << endl;
-		int i;
-		cin >> i;
-		cout << i << endl;
-		oFile.close();
-	}
-	else
-	{
-		cout << "file khule nai" << endl;
-	}
-	*/
 	
 	for(int i=0 ; i<numOfParameter ; i++)
 	{
@@ -42,7 +25,7 @@ void BVC(int numOfParameter, int *maxi, int *mini, int *nominal)
 		bvcOut[i][0] = i+1;
 	}
 
-	int row_bvc = 1;
+	int row_bvc = 0;
 	
 	for(int i=0; i<numOfParameter; i++)
 	{
@@ -54,16 +37,16 @@ void BVC(int numOfParameter, int *maxi, int *mini, int *nominal)
 				if(k==i)
 				{
 					bvcOut[row_bvc][k+1]= maxMinArray[k][j];
-					cout << bvcOut[row_bvc][k+1] << "\t";
+					//cout << bvcOut[row_bvc][k+1] << "\t";
 				}
 				
 				else
 				{
 					bvcOut[row_bvc][k+1]= nominal[k];
-					cout << bvcOut[row_bvc][k+1] << "\t";
+					//cout << bvcOut[row_bvc][k+1] << "\t";
 				}
 			}	
-			cout << endl;
+			//cout << endl;
 			row_bvc = row_bvc + 1;
 		}
 		
@@ -72,10 +55,39 @@ void BVC(int numOfParameter, int *maxi, int *mini, int *nominal)
 	for(int i=0; i<numOfParameter; i++)
 	{
 		bvcOut[row_bvc][i+1]= nominal[i];
-		cout << bvcOut[row_bvc][i+1] << "\t";
+		//cout << bvcOut[row_bvc][i+1] << "\t";
 	}
 	
-	cout << endl;
+	//cout << endl;
+
+	ofstream oFile;
+	oFile.open("BVC.csv", ofstream::app);
+	if(oFile.is_open())
+	{
+		oFile << "Test Case ID,";
+		
+		for(int i=0; i<numOfParameter; i++)
+		{
+			oFile << "Parameter" << i+1 << ",";
+		}
+		oFile << "Expected Output" << endl;
+		
+		for(int i=0; i<bvc; i++)
+		{
+			for(int j=0; j<numOfParameter+1; j++)
+			{
+				oFile << bvcOut[i][j] << ",";
+			}
+			oFile << " "<< endl;
+		}
+		
+		oFile.close();
+	}
+	else
+	{
+		cout << "Couldn't open output file" << endl;
+	}
+	
 	
 	
 	return;
@@ -104,7 +116,6 @@ int main (void)
 	}
 	
 	BVC(numOfParameter, maxi, mini, nominal);
-		cout << "back ashci" << endl;
 	
 	
 	return 0;
