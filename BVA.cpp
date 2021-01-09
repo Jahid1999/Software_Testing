@@ -149,7 +149,7 @@ void Robust(int numOfParameter, int *maxi, int *mini, int *nominal)
 	//cout << endl;
 
 	ofstream oFile;
-	oFile.open("Robust.csv", ofstream::app);
+	oFile.open("robust.csv", ofstream::app);
 	if(oFile.is_open())
 	{
 		oFile << "Test Case ID,";
@@ -203,25 +203,28 @@ void Worst(int numOfParameter, int *maxi, int *mini, int *nominal)
 		worstOut[i][0] = i+1;
 	}
 
-	int row_worst = 0;
 	
-	for(int i=0; i<numOfParameter; i++)
+	for(int i=0 ; i<numOfParameter ; i++)
 	{
 		
-		for(int j=0; j<5; j++)
+		int row_worst = 0;
+		for(int j=0 ; j<(worst/pow(5,numOfParameter-i-1)) ; j++)
 		{
-			for(int k=0; k<numOfParameter; k++)
+			for(int k=0 ; k<pow(5,numOfParameter-i-1) ; k++)
 			{
-				worstOut[row_worst][k+1]= maxMinArray[k][j];
+				worstOut[row_worst][i+1]= maxMinArray[i][j%5];
+					
+				//cout << worstOut[row_worst][i] << "\t";
+				row_worst = row_worst + 1;
+					
 			}
-			row_worst = row_worst + 1;
-		}
-		
+			//cout << endl << endl;		
+		}	
 	}
 	
 
 	ofstream oFile;
-	oFile.open("Worst.csv", ofstream::app);
+	oFile.open("worst.csv", ofstream::app);
 	if(oFile.is_open())
 	{
 		oFile << "Test Case ID,";
@@ -271,8 +274,8 @@ int main (void)
 		cin >> mini[i] >> maxi[i];	
 	}
 	
-	//BVC(numOfParameter, maxi, mini, nominal);
-	//Robust(numOfParameter, maxi, mini, nominal);
+	BVC(numOfParameter, maxi, mini, nominal);
+	Robust(numOfParameter, maxi, mini, nominal);
 	Worst(numOfParameter, maxi, mini, nominal);
 	
 	
