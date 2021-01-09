@@ -2,8 +2,6 @@
 
 using namespace std;
 
-int worst;
-
 void BVC(int numOfParameter, int *maxi, int *mini, int *nominal) 
 {
 	int bvc = 4 * numOfParameter +1;
@@ -184,6 +182,77 @@ void Robust(int numOfParameter, int *maxi, int *mini, int *nominal)
 }
 
 
+void Worst(int numOfParameter, int *maxi, int *mini, int *nominal) 
+{
+	int worst = pow(5,numOfParameter);
+	int maxMinArray[numOfParameter][5], worstOut[worst][numOfParameter+1];
+	
+	for(int i=0 ; i<numOfParameter ; i++)
+	{
+		nominal[i] = (int) ((maxi[i] + mini[i])/2);
+		
+		maxMinArray[i][0]= mini[i]; // min value
+		maxMinArray[i][1]= mini[i] + 1; // mini value
+		maxMinArray[i][2]= maxi[i] - 1 ; // max-1 value
+		maxMinArray[i][3]= maxi[i]; // max value
+		maxMinArray[i][4]= nominal[i]; // nominal value
+	}
+	
+	for(int i=0; i<worst; i++)
+	{
+		worstOut[i][0] = i+1;
+	}
+
+	int row_worst = 0;
+	
+	for(int i=0; i<numOfParameter; i++)
+	{
+		
+		for(int j=0; j<5; j++)
+		{
+			for(int k=0; k<numOfParameter; k++)
+			{
+				worstOut[row_worst][k+1]= maxMinArray[k][j];
+			}
+			row_worst = row_worst + 1;
+		}
+		
+	}
+	
+
+	ofstream oFile;
+	oFile.open("Worst.csv", ofstream::app);
+	if(oFile.is_open())
+	{
+		oFile << "Test Case ID,";
+		
+		for(int i=0; i<numOfParameter; i++)
+		{
+			oFile << "Parameter" << i+1 << ",";
+		}
+		oFile << "Expected Output" << endl;
+		
+		for(int i=0; i<worst; i++)
+		{
+			for(int j=0; j<numOfParameter+1; j++)
+			{
+				oFile << worstOut[i][j] << ",";
+			}
+			oFile << " "<< endl;
+		}
+		
+		oFile.close();
+	}
+	else
+	{
+		cout << "Couldn't open output file" << endl;
+	}
+	
+	
+	
+	return;
+}
+
 
 int main (void)
 {
@@ -192,11 +261,8 @@ int main (void)
 	
 	cout << "Enter number of parameters: ";
 	cin >> numOfParameter;
-
-	worst = pow(5,numOfParameter);
 	
-	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter],
-		  worstOut[worst][numOfParameter+1] ;
+	int maxi[numOfParameter], mini[numOfParameter], nominal[numOfParameter];
 	
 	
 	for(int i=0; i<numOfParameter; i++)
@@ -205,8 +271,9 @@ int main (void)
 		cin >> mini[i] >> maxi[i];	
 	}
 	
-	BVC(numOfParameter, maxi, mini, nominal);
-	Robust(numOfParameter, maxi, mini, nominal);
+	//BVC(numOfParameter, maxi, mini, nominal);
+	//Robust(numOfParameter, maxi, mini, nominal);
+	Worst(numOfParameter, maxi, mini, nominal);
 	
 	
 	
