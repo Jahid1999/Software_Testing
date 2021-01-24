@@ -15,7 +15,7 @@ public class GradeCalculator {
 		}
 		if (total >= 50) {
 			grade = "C";
-		} 
+		}
 		if (total <= 50) {
 			grade = "F";
 		}
