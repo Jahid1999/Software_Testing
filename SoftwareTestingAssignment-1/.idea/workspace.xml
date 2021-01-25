@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c3e04ed-df04-4324-94c8-6a8ec1c884eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/bin/Caculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/bin/GradeCalculator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/bin/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/src/Caculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/src/GradeCalculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Unit_Testing_JUnit/src/Main.java" beforeDir="false" />
-    </list>
+    <list default="true" id="4c3e04ed-df04-4324-94c8-6a8ec1c884eb" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,6 +48,7 @@
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
+  <component name="ProjectId" id="1nZQ6Bqk3i6OkWGJXI5Va6UNE1u" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -89,11 +80,17 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -138,6 +135,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>

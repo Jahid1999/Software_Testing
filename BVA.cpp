@@ -224,7 +224,7 @@ void Worst(int numOfParameter, int *maxi, int *mini, int *nominal)
 	
 
 	ofstream oFile;
-	oFile.open("worst.csv", ofstream::app);
+	oFile.open("worst01.csv", ofstream::app);
 	if(oFile.is_open())
 	{
 		oFile << "Test Case ID,";
@@ -274,8 +274,8 @@ int main (void)
 		cin >> mini[i] >> maxi[i];	
 	}
 	
-	BVC(numOfParameter, maxi, mini, nominal);
-	Robust(numOfParameter, maxi, mini, nominal);
+	//BVC(numOfParameter, maxi, mini, nominal);
+	//Robust(numOfParameter, maxi, mini, nominal);
 	Worst(numOfParameter, maxi, mini, nominal);
 	
 	
