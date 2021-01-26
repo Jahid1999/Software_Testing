@@ -4,8 +4,8 @@ using namespace std;
 
 
 //right function for testing grades
-int add(int a, int b, int c) {
-		return a+b+c;
+int multiply(int a, int b) {
+		return a*b;
 	}
 
 bool openFile(string fileName,ofstream &ofile){
@@ -35,16 +35,16 @@ int main(){
 	if(readFile("worst.csv",ifile) && openFile("methods.java",ofile) && openFile("worst_data.csv",ofileresult)){
 	//cout<<id<<" calling"<<endl; 
 	
-		while(ifile>>id>>ch>>a>>ch>>b>>ch>>c>>ch){
+		while(ifile>>id>>ch>>a>>ch>>b>>ch){
 			ofile<<"@Test\n";
-			ofile<<"public void addThreeTestWorstCase"<<id<<" () {"<<endl;
+			ofile<<"public void multiplyWorstCase"<<id<<" () {"<<endl;
 			ofile<<"\tCaculator cal = new Caculator();"<<endl;
-			ofile<<"\tint result = cal.add("<<a<<","<<b<<","<<c<<");"<<endl;
-			ofile<<"\tint expected = "<<add(a,b,c)<<";"<<endl;
+			ofile<<"\tint result = cal.multiply("<<a<<","<<b<<");"<<endl;
+			ofile<<"\tint expected = "<<multiply(a,b)<<";"<<endl;
 			ofile<<"\tassertEquals(expected,result);"<<endl;
 			ofile<<"}"<<endl;
 			
-			ofileresult<<id<<","<<a<<","<<b<<","<<c<<","<<add(a,b,c)<<","<<add(a,b,c)<<","<<"Success"<<endl;
+			ofileresult<<id<<","<<a<<","<<b<<","<<multiply(a,b)<<","<<multiply(a,b)<<","<<"Success"<<endl;
 			
 		}
 	}
