@@ -1598,5 +1598,5 @@ public class CaculatorTest {
         int expected = 0;
         assertEquals(expected,result);
     }
- 
+
 }
