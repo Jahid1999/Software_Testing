@@ -47,19 +47,6 @@ void Worst(int numOfParameter, int *maxi, int *mini, int *nominal)
 	oFile.open("worst.csv", ofstream::app);
 	if(oFile.is_open())
 	{
-		oFile << "Test Case ID,";
-		
-		/*
-		for(int i=0; i<numOfParameter; i++)
-		{
-			oFile << "Parameter" << i+1 << ",";
-		}
-		*/
-		oFile << "Mid"<< ",";
-		oFile << "CT"<< ",";
-		oFile << "Final"<< ",";
-		oFile << "Attendance"<< ",";
-		oFile << "Expected Output" << endl;
 		
 		for(int i=0; i<worst; i++)
 		{
@@ -67,7 +54,7 @@ void Worst(int numOfParameter, int *maxi, int *mini, int *nominal)
 			{
 				oFile << worstOut[i][j] << ",";
 			}
-			oFile << " "<< endl;
+			oFile << endl;
 		}
 		
 		oFile.close();
