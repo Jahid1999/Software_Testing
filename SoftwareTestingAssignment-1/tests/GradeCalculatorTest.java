@@ -4417,7 +4417,7 @@ public class GradeCalculatorTest {
     @Test
     public void getGPATest5() {
         GradeCalculator gc = new GradeCalculator();
-        double gpa = gc.getGPA("F");
+        double gpa = gc.getGPA("D");
         double expected = 0.00;
 
         assertEquals(expected,gpa,0.001);
@@ -4426,7 +4426,7 @@ public class GradeCalculatorTest {
     @Test
     public void getGPATest6() {
         GradeCalculator gc = new GradeCalculator();
-        double gpa = gc.getGPA("D");
+        double gpa = gc.getGPA("F");
         double expected = 0.00;
 
         assertEquals(expected,gpa,0.001);

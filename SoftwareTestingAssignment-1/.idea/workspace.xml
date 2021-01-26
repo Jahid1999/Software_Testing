@@ -4,10 +4,6 @@
     <list default="true" id="4c3e04ed-df04-4324-94c8-6a8ec1c884eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/GradeCalculatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/GradeCalculatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WorstBVC/.~lock.worst.csv#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WorstBVC/t" beforeDir="false" afterPath="$PROJECT_DIR$/../WorstBVC/t" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WorstBVC/worst.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../WorstBVC/worst.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../WorstBVC/worstbvc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../WorstBVC/worstbvc.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
